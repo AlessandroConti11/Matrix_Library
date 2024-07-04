@@ -19,7 +19,7 @@
 float** createMatrix(int n, int m);
 
 /**
- * Creates a identity matrix - M: n x n.
+ * Creates an identity matrix - M: n x n.
  *
  * @param n the matrix order.
  * @return the identity matrix - M: n x n.
@@ -112,11 +112,11 @@ int isNullMatrix(int n, int m, float** a);
 int isDiagonalMatrix(int n, float** a);
 
 /**
- * Checks if a matrix is antidiagonal.
+ * Checks if a matrix is anti-diagonal.
  *
  * @param n the matrix order.
  * @param a the matrix - M: n x n.
- * @return 1 if the matrx is antidiagonal, 0 otherwise.
+ * @return 1 if the matrix is anti-diagonal, 0 otherwise.
  */
 int isAntidiagonalMatrix(int n, float** a);
 
@@ -440,4 +440,12 @@ float* diagonalMatrix(int n, int m, float** a);
  */
 float* pivot(int n, int m, float** a);
 
+/**
+ * Decomposition of a matrix using Lower-Upper Decomposition - [A]=[L]*[U].
+ *
+ * @param n the matrix order.
+ * @param a the matrix - M: n x n.
+ * @param l the lower triangular matrix - M: n x n.
+ * @param u the upper triangular matrix - M: n x n.
+ */
 void luDecomposition(int n, float** a, float** l, float** u);
