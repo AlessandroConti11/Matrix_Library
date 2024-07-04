@@ -1,0 +1,30 @@
+#To change the value of a variable: make VARIABLE="..."
+
+#Compilation flags
+CFLAGS = -Wall -Werror -std=gnu11 -O2
+
+
+#Source files
+SOURCE = ${SRC} ${MATRIX}
+#source code
+SRC = main.c
+#Matrix.h
+MATRIX = \
+		Matrix/ManageMatrix.c \
+		Matrix/MatrixType.c \
+		Matrix/MatrixOperation.c \
+		Matrix/UtilityMatrix.c
+
+
+#Output
+OUTPUT = output
+
+
+compile:
+	gcc ${CFLAGS} ${SOURCE} -o ${OUTPUT}
+
+asan:
+	gcc ${SOURCE} -o ${OUTPUT} -fsanitize=address
+
+clean:
+	rm -ri ${OUTPUT}
