@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "../Matrix.h"
 
@@ -152,22 +153,22 @@ float* pivot(int n, int m, float** a, int *pivotsNumber) {
     //The step matrix.
     float** step = createMatrix(n, m);
     //The pivot list.
-    float* pivots = malloc(n * sizeof(float));
+    float* pivots = malloc((n < m ? n : m) * sizeof(float));
     //The counter of pivots found.
     int pivotCounter = 0;
 
-    stepMatrix(n, m, a, step);
+    rowEchelonMatrix(n, m, a, step);
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
             if (step[i][j] != 0) {
-                pivots[pivotCounter] = a[i][j];
+                pivots[pivotCounter] = step[i][j];
                 pivotCounter++;
                 break;
             }
         }
     }
 
-    *pivotsNumber = pivotCounter - 1;
+    *pivotsNumber = pivotCounter;
     free(step);
     return pivots;
 }

@@ -225,7 +225,8 @@ void scalarProductMatrix(int n, int m, float scalar, float** a, float** res) {
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < m; ++j) {
-            res[i][j] = scalar * a[n][m];
+            res[i][j] = scalar * a[i][j];
+            printf("res: %f\n", res[i][j]);
         }
     }
 }
@@ -246,9 +247,9 @@ void productMatrix(int n, int p, int m, float** a, float** b, float** res) {
     assert(m > 0);
 
     for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < p; ++j) {
+        for (int j = 0; j < m; ++j) {
             res[i][j] = 0;
-            for (int k = 0; k < m; ++k) {
+            for (int k = 0; k < p; ++k) {
                 res[i][j] += a[i][k] * b[k][j];
             }
         }

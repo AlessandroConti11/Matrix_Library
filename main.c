@@ -72,12 +72,12 @@ void printChoice() {
            "10. check if a matrix is symmetric\n"
            "11. check if a matrix is anti-symmetric\n"
            "12. check if a matrix is invertible\n"
-           "13. check if a matrix is a step-matrix\n"
+           "13. check if a matrix is a row echelon matrix\n"
            "14. check if a matrix is an Hankel matrix\n"
            "15. check if a matrix is a Toeplitz matrix\n"
            "16. transpose a matrix\n"
            "17. invert a matrix, if possible\n"
-           "18. transform a matrix into a stepped matrix\n"
+           "18. transform a matrix into a row echelon matrix\n"
            "19. compute the absolute value of a matrix\n"
            "20. compute the minor\n"
            "21. compute the cofactor\n"
@@ -98,7 +98,7 @@ void printChoice() {
            "36. find the pivot of a matrix\n"
            "37. decompose a matrix using LU-decomposition\n"
            "38. print the possible choice\n"
-           "39. quit\n"
+           "39. quit"
            "\n\n");
 }
 
@@ -127,6 +127,7 @@ void manageChoice(int *choice) {
             printMatrix(row1, row1, matrix1);
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 2:
             printf("You chose to create a null matrix\n\n"
@@ -138,6 +139,7 @@ void manageChoice(int *choice) {
             printMatrix(row1, row1, matrix1);
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 3:
             printf("You chose to copy a matrix into another one\n\n"
@@ -167,6 +169,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row2, column2, matrix2);
+            printf("\n\n\n");
             break;
         case 4:
             printf("You chose to check if a matrix is an identity one\n\n"
@@ -178,10 +181,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s an identity matrix\n", isIdentityMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s an identity matrix", isIdentityMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 5:
             printf("You chose to check if a matrix is a null one\n\n"
@@ -193,10 +197,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, column1, matrix1);
 
-            printf("The matrix insert %s a null matrix\n", isNullMatrix(row1, column1, matrix1) == 1 ?
+            printf("The matrix insert %s a null matrix", isNullMatrix(row1, column1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, column1, matrix1);
+            printf("\n\n\n");
             break;
         case 6:
             printf("You chose to check if a matrix is a diagonal one\n\n"
@@ -208,10 +213,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s a diagonal matrix\n", isDiagonalMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s a diagonal matrix", isDiagonalMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 7:
             printf("You chose to check if a matrix is an anti-diagonal one\n\n"
@@ -223,10 +229,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s an anti-diagonal matrix\n", isAntidiagonalMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s an anti-diagonal matrix", isAntidiagonalMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 8:
             printf("You chose to check if a matrix is an upper diagonal one\n\n"
@@ -238,10 +245,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s an upper diagonal matrix\n", isUpperDiagonalMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s an upper diagonal matrix", isUpperDiagonalMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 9:
             printf("You chose to check if a matrix is a lower diagonal one\n\n"
@@ -253,10 +261,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s a lower diagonal matrix\n", isLowerDiagonalMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s a lower diagonal matrix", isLowerDiagonalMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 10:
             printf("You chose to check if a matrix is a symmetric one\n\n"
@@ -268,10 +277,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s a symmetric matrix\n", isSymmetricMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s a symmetric matrix", isSymmetricMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 11:
             printf("You chose to check if a matrix is an anti-symmetric one\n\n"
@@ -283,10 +293,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s an anti-symmetric matrix\n", isAntisymmetricMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s an anti-symmetric matrix", isAntisymmetricMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 12:
             printf("You chose to check if a matrix is an invertible one\n\n"
@@ -298,13 +309,14 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s aa invertible matrix\n", isInvertibleMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s an invertible matrix", isInvertibleMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 13:
-            printf("You chose to check if a matrix is a step one\n\n"
+            printf("You chose to check if a matrix is a row echelon one\n\n"
                    "Insert the matrix to check: \n");
 
             matrix1 = generateMatrixNxM(&row1, &column1);
@@ -313,10 +325,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, column1, matrix1);
 
-            printf("The matrix insert %s a step matrix\n", isStepMatrix(row1, column1, matrix1) == 1 ?
-                "is" : "is NOT");
+            printf("The matrix insert %s a row echelon matrix", isRowEchelonMatrix(row1, column1, matrix1) == 1 ?
+                       "is" : "is NOT");
 
             deleteMatrix(row1, column1, matrix1);
+            printf("\n\n\n");
             break;
         case 14:
             printf("You chose to check if a matrix is an Hankel one\n\n"
@@ -328,10 +341,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s an Hankel matrix\n", isHankelMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s an Hankel matrix", isHankelMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 15:
             printf("You chose to check if a matrix is a Toeplitz one\n\n"
@@ -343,10 +357,11 @@ void manageChoice(int *choice) {
             printf("The matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The matrix insert %s a Toeplitz matrix\n", isToeplitzMatrix(row1, matrix1) == 1 ?
+            printf("The matrix insert %s a Toeplitz matrix", isToeplitzMatrix(row1, matrix1) == 1 ?
                 "is" : "is NOT");
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 16:
             printf("You chose to transpose a matrix\n\n"
@@ -367,6 +382,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(column1, row1, matrix2);
+            printf("\n\n\n");
             break;
         case 17:
             printf("You chose to invert a matrix\n\n"
@@ -374,7 +390,7 @@ void manageChoice(int *choice) {
             matrix1 = generateMatrixNxN(&row1);
             assert(matrix1 != NULL);
 
-            if (isInvertibleMatrix(row1, matrix1) == 1) {
+            if (isInvertibleMatrix(row1, matrix1) == 0) {
                 printf("The matrix is NOT invertible\n");
                 break;
             }
@@ -391,25 +407,27 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, row1, matrix1);
             deleteMatrix(row1, row1, matrix2);
+            printf("\n\n\n");
             break;
         case 18:
-            printf("You chose to transform a matrix into a stepped one\n\n"
-                   "Insert the matrix to be stepped: \n");
+            printf("You chose to transform a matrix into a row echelon one\n\n"
+                   "Insert the matrix to be transformed in to row echelon: \n");
             matrix1 = generateMatrixNxM(&row1, &column1);
             assert(matrix1 != NULL);
 
             matrix2 = createMatrix(row1, column1);
             assert(matrix2 != NULL);
-            stepMatrix(row1, column1, matrix1, matrix2);
+            rowEchelonMatrix(row1, column1, matrix1, matrix2);
 
             printf("Original:\n");
             printMatrix(row1, column1, matrix1);
 
-            printf("Stepped:\n");
+            printf("Row echelon:\n");
             printMatrix(row1, column1, matrix2);
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row1, column1, matrix2);
+            printf("\n\n\n");
             break;
         case 19:
             printf("You chose to compute the absolute value of a matrix\n\n"
@@ -428,6 +446,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row1, column1, matrix2);
+            printf("\n\n\n");
             break;
         case 20:
             printf("You chose to compute the minor of a matrix\n\n"
@@ -445,9 +464,10 @@ void manageChoice(int *choice) {
             printf("Matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The minor (%d; %d) of the matrix is: %f", row2, column1, minor(row1, matrix1, row2, column1));
+            printf("The minor (%d; %d) of the matrix is: %f\n", row2, column1, minor(row1, matrix1, row2, column1));
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 21:
             printf("You chose to compute the cofactor of a matrix\n\n"
@@ -465,9 +485,10 @@ void manageChoice(int *choice) {
             printf("Matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The cofactor (%d; %d) of the matrix is: %f", row2, column1, cofactor(row1, matrix1, row2, column1));
+            printf("The cofactor (%d; %d) of the matrix is: %f\n", row2, column1, cofactor(row1, matrix1, row2, column1));
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 22:
             printf("You chose to compute the determinant of a matrix\n\n"
@@ -478,9 +499,10 @@ void manageChoice(int *choice) {
             printf("Matrix:\n");
             printMatrix(row1, row1, matrix1);
 
-            printf("The determinant of the matrix is: %f", determinantMatrix(row1, matrix1));
+            printf("The determinant of the matrix is: %f\n", determinantMatrix(row1, matrix1));
 
             deleteMatrix(row1, row1, matrix1);
+            printf("\n\n\n");
             break;
         case 23:
             printf("You chose to compute the rank of a matrix\n\n"
@@ -489,11 +511,12 @@ void manageChoice(int *choice) {
             assert(matrix1 != NULL);
 
             printf("Matrix:\n");
-            printMatrix(row1, row1, matrix1);
+            printMatrix(row1, column1, matrix1);
 
-            printf("The rank of the matrix is: %d", rankMatrix(row1, column1, matrix1));
+            printf("The rank of the matrix is: %d\n", rankMatrix(row1, column1, matrix1));
 
             deleteMatrix(row1, column1, matrix1);
+            printf("\n\n\n");
             break;
         case 24:
             printf("You chose to compute the sum of 2 matrix\n\n"
@@ -519,6 +542,7 @@ void manageChoice(int *choice) {
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row2, column2, matrix2);
             deleteMatrix(row1, column1, res);
+            printf("\n\n\n");
             break;
         case 25:
             printf("You chose to compute the subtraction of 2 matrix\n\n"
@@ -544,6 +568,7 @@ void manageChoice(int *choice) {
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row2, column2, matrix2);
             deleteMatrix(row1, column1, res);
+            printf("\n\n\n");
             break;
         case 26:
             printf("You chose to compute the scalar product\n\n"
@@ -559,6 +584,7 @@ void manageChoice(int *choice) {
             assert(res != NULL);
 
             scalarProductMatrix(row1, column1, k, matrix1, res);
+            scalarProductMatrix(row1, column1, k, matrix1, res);
 
             printf("%f\n"
                    "*\n", k);
@@ -568,6 +594,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row1, column1, res);
+            printf("\n\n\n");
             break;
         case 27:
             printf("You chose to compute the product of 2 matrix\n\n"
@@ -578,20 +605,21 @@ void manageChoice(int *choice) {
             printf("Insert the second matrix: \n");
             matrix2 = generateMatrixNxM(&row2, &column2);
             assert(matrix2 != NULL);
-            assert(column1 == row1);
+            assert(column1 == row2);
 
             res = createMatrix(row1, column2);
             productMatrix(row1, column1, column2, matrix1, matrix2, res);
 
             printMatrix(row1, column1, matrix1);
             printf("*\n");
-            printMatrix(row1, column1, matrix2);
+            printMatrix(row2, column2, matrix2);
             printf("=\n");
-            printMatrix(row1, column1, res);
+            printMatrix(row1, column2, res);
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row2, column2, matrix2);
             deleteMatrix(row1, column2, res);
+            printf("\n\n\n");
             break;
         case 28:
             printf("You chose to compute the power elevation\n\n"
@@ -615,6 +643,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, row1, matrix1);
             deleteMatrix(row1, row1, res);
+            printf("\n\n\n");
             break;
         case 29:
             printf("You chose to compute the direct sum of 2 matrix\n\n"
@@ -638,6 +667,7 @@ void manageChoice(int *choice) {
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row2, column2, matrix2);
             deleteMatrix(row1 + row2, column1 + column2, res);
+            printf("\n\n\n");
             break;
         case 30:
             printf("You chose to compute the Kronecker product of 2 matrix\n\n"
@@ -653,7 +683,7 @@ void manageChoice(int *choice) {
             kroneckerProductMatrix(row1, column1, row2, column2, matrix1, matrix2, res);
 
             printMatrix(row1, column1, matrix1);
-            printf("(+)\n");
+            printf("(*)\n");
             printMatrix(row2, column2, matrix2);
             printf("=\n");
             printMatrix(row1 + row2, column1+ column2, res);
@@ -661,6 +691,7 @@ void manageChoice(int *choice) {
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row2, column2, matrix2);
             deleteMatrix(row1 * row2, column1 * column2, res);
+            printf("\n\n\n");
             break;
         case 31:
             printf("You chose to swap 2 rows of a matrix\n\n"
@@ -681,15 +712,16 @@ void manageChoice(int *choice) {
             assert(returnScanf > 0);
             assert(column2 <= row1);
 
-            swapRowMatrix(row1, row2, matrix1, row2, column2, matrix2);
+            swapRowMatrix(row1, column1, matrix1, row2, column2, matrix2);
 
             printf("Original:\n");
             printMatrix(row1, column1, matrix1);
             printf("After:\n");
-            printMatrix(row1, column1, matrix1);
+            printMatrix(row1, column1, matrix2);
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row1, column1, matrix2);
+            printf("\n\n\n");
             break;
         case 32:
             printf("You chose to swap 2 columns of a matrix\n\n"
@@ -710,16 +742,16 @@ void manageChoice(int *choice) {
             assert(returnScanf > 0);
             assert(column2 <= column1);
 
+            swapColumnMatrix(row1, column1, matrix1, row2, column2, matrix2);
+
             printf("Original:\n");
             printMatrix(row1, column1, matrix1);
-
-            swapColumnMatrix(row1, row2, matrix1, row2, column2, matrix2);
-
             printf("After:\n");
-            printMatrix(row1, column1, matrix1);
+            printMatrix(row1, column1, matrix2);
 
             deleteMatrix(row1, column1, matrix1);
             deleteMatrix(row1, column1, matrix2);
+            printf("\n\n\n");
             break;
         case 33:
             printf("You chose to find the maximum value in a matrix\n\n"
@@ -727,11 +759,13 @@ void manageChoice(int *choice) {
             matrix1 = generateMatrixNxM(&row1, &column1);
             assert(matrix1 != NULL);
 
+            k = findMaxMatrix(row1, column1, matrix1, &row2, &column2);
             printf("Matrix:\n");
             printMatrix(row1, column1, matrix1);
-            printf("The maximum value in the matrix is %f in position(%d; %d)\n", findMaxMatrix(row1, column1, matrix1, &row2, &column2), row2, column2);
+            printf("The maximum value in the matrix is %f in position(%d; %d)\n", k, row2, column2);
 
             deleteMatrix(row1, column1, matrix1);
+            printf("\n\n\n");
             break;
         case 34:
             printf("You chose to find the minimum value in a matrix\n\n"
@@ -739,11 +773,14 @@ void manageChoice(int *choice) {
             matrix1 = generateMatrixNxM(&row1, &column1);
             assert(matrix1 != NULL);
 
+            k = findMinMatrix(row1, column1, matrix1, &row2, &column2);
+
             printf("Matrix:\n");
             printMatrix(row1, column1, matrix1);
-            printf("The minimum value in the matrix is %f in position(%d; %d)\n", findMinMatrix(row1, column1, matrix1, &row2, &column2), row2, column2);
+            printf("The minimum value in the matrix is %f in position(%d; %d)\n", k, row2, column2);
 
             deleteMatrix(row1, column1, matrix1);
+            printf("\n\n\n");
             break;
         case 35:
             printf("You chose to find the elements on a matrix diagonal\n\n"
@@ -764,6 +801,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, column1, matrix1);
             free(array);
+            printf("\n\n\n");
             break;
         case 36:
             printf("You chose to find the pivot of a matrix\n\n"
@@ -784,6 +822,7 @@ void manageChoice(int *choice) {
 
             deleteMatrix(row1, column1, matrix1);
             free(array);
+            printf("\n\n\n");
             break;
         case 37:
             printf("You chose to find the matrix decomposition using the LU-Decomposition\n\n"
@@ -809,13 +848,16 @@ void manageChoice(int *choice) {
             deleteMatrix(row1, row1, matrix1);
             deleteMatrix(row1, row1, matrix2);
             deleteMatrix(row1, row1, res);
+            printf("\n\n\n");
             break;
         case 38:
             printChoice();
+            printf("\n\n\n");
             break;
         default:
             printf("Exit\n");
             *choice = 39;
+            printf("\n\n\n");
             break;
     }
 }

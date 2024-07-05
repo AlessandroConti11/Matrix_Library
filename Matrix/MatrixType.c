@@ -166,7 +166,7 @@ int isSymmetricMatrix(int n, float** a) {
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            if (a[i][j] == a[j][i]) {
+            if (a[i][j] != a[j][i]) {
                 //matrix is NOT symmetric diagonal
                 return 0;
             }
@@ -189,7 +189,7 @@ int isAntisymmetricMatrix(int n, float** a) {
 
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            if (a[j][i] == -a[i][j]) {
+            if (a[j][i] != -a[i][j]) {
                 //matrix is NOT symmetric diagonal
                 return 0;
             }
@@ -221,32 +221,44 @@ int isInvertibleMatrix(int n, float** a) {
 }
 
 /**
- * Checks if a matrix is a step matrix.
+ * Checks if a matrix is a row echelon matrix.
  *
  * @param n the number of row.
  * @param m the number of column.
  * @param a the matrix - M: n x m.
- * @return 1 if the matrix is a step matrix, 0 otherwise.
+ * @return 1 if the matrix is a row echelon matrix, 0 otherwise.
  */
-int isStepMatrix(int n, int m, float** a) {
+int isRowEchelonMatrix(int n, int m, float** a) {
     assert(n > 0);
     assert(m > 0);
 
     //Last column position different from 0.
     int index = -1;
+    //First non-zero element in the current row.
+    int firstNonZero = -1;
 
     for (int i = 0; i < n; ++i) {
+        firstNonZero = -1;
         for (int j = 0; j < m; ++j) {
             //all positions before the last index whose value is different from 0 must be 0
-            if (a[i][j] != 0 && j <= index) {
-                //matrix is NOT step matrix
-                return 0;
-            }
-            //the first position whose value is different from 0 is the new index
             if (a[i][j] != 0) {
-                index = j;
+                firstNonZero = j;
+                break;
             }
         }
+
+        //the whole row consists of 0
+        if (firstNonZero == -1) {
+            continue;
+        }
+
+        //the first non-zero element of the current row is in a column later than the previous row
+        if (firstNonZero <= index) {
+            //matrix is NOT step matrix
+            return 0;
+        }
+
+        index = firstNonZero;
     }
 
     //matrix is step matrix
@@ -263,10 +275,10 @@ int isStepMatrix(int n, int m, float** a) {
 int isHankelMatrix(int n, float** a) {
     assert(n > 0);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j < n - 1; ++j) {
             //a[i][j] == a[i-1][j+1]
-            if (i - 1 >= 0 && j + 1 <= n && a[i][j] != a[i - 1][j + 1]) {
+            if (a[i][j] != a[i - 1][j + 1]) {
                 //matrix is NOT Hankel matrix
                 return 0;
             }
@@ -341,14 +353,14 @@ void inverseMatrix(int n, float** a, float** inv) {
 
 
 /**
- * Step-transformed matrix - Gaussian elimination method.
+ * Row echelon matrix - Gaussian elimination method.
  *
  * @param n the number of row.
  * @param m the number of column.
  * @param a the matrix - M: n x m.
- * @param step the step-transformed matrix - M: n x m.
+ * @param step the row echelon transformed matrix - M: n x m.
  */
-void stepMatrix(int n, int m, float** a, float** step) {
+void rowEchelonMatrix(int n, int m, float** a, float** step) {
     assert(n > 0);
     assert(m > 0);
 
@@ -356,41 +368,49 @@ void stepMatrix(int n, int m, float** a, float** step) {
     int elX = 0;
     //Pivot column position.
     int elY = 0;
+    //Counter for rows.
     int counter = 0;
     //Cofactor.
     float cofactor = 0;
+    //First non-null position.
+    int pivotFound = 0;
 
     copyMatrix(n, m, a, step);
 
-    do {
-        //find the first non null position
-        for (int j = elX; j < m; ++j) {
-            for (int i = elY; i < n; ++i) {
+    while (elX < n && elY < m) {
+        pivotFound = 0;
+        for (int j = elY; j < m && !pivotFound; ++j) {
+            for (int i = elX; i < n && !pivotFound; ++i) {
                 if (step[i][j] != 0) {
                     elX = i;
                     elY = j;
-                    goto END;
+                    pivotFound = 1;
                 }
             }
         }
-        END:
 
-        //swap the first row with the one that has the first element different from 0
+        //exit if no pivot found
+        if (!pivotFound) {
+            break;
+        }
+
+        //swap the current row with the one that has the first element different from 0
         swapRowMatrix(n, m, step, elX, counter, step);
 
-        for (int i = elX + 1; i < n; ++i) {
+        //eliminate all elements below the pivot
+        for (int i = counter + 1; i < n; ++i) {
             if (step[i][elY] != 0) {
-                cofactor = (float) step[i][elY] / step[elX][elY];
+                cofactor = step[i][elY];
                 for (int j = elY; j < m; ++j) {
-                    step[i][j] -= cofactor * step[elX][j];
+                    step[i][j] -= cofactor * step[counter][j];
                 }
             }
         }
 
-        elX++;
+        elX = counter + 1;
         elY++;
         counter++;
-    } while (elX < n && elY < m);
+    }
 }
 
 /**

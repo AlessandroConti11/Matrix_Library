@@ -163,5 +163,4 @@ void printMatrix(int n, int m, float** a) {
         }
         printf("\n");
     }
-    printf("\n");
 }

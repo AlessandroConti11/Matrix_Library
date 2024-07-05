@@ -164,14 +164,14 @@
  int isInvertibleMatrix(int n, float** a);
 
  /**
-  * Checks if a matrix is a step matrix.
+  * Checks if a matrix is a row echelon matrix.
   *
   * @param n the number of row.
   * @param m the number of column.
   * @param a the matrix - M: n x m.
-  * @return 1 if the matrix is a step matrix, 0 otherwise.
+  * @return 1 if the matrix is a row echelon matrix, 0 otherwise.
   */
- int isStepMatrix(int n, int m, float** a);
+ int isRowEchelonMatrix(int n, int m, float** a);
 
  /**
   * Checks if a matrix is an Hankel matrix.
@@ -212,14 +212,14 @@
  void inverseMatrix(int n, float** a, float** inv);
 
  /**
-  * Step-transformed matrix - Gaussian elimination method.
+  * Row echelon matrix - Gaussian elimination method.
   *
   * @param n the number of row.
   * @param m the number of column.
   * @param a the matrix - M: n x m.
-  * @param step the step-transformed matrix - M: n x m.
+  * @param step the row echelon transformed matrix - M: n x m.
   */
- void stepMatrix(int n, int m, float** a, float** step);
+ void rowEchelonMatrix(int n, int m, float** a, float** step);
 
  /**
   * Absolute value matrix.
