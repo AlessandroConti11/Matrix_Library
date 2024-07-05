@@ -382,8 +382,9 @@ void kroneckerProductMatrix(int n, int m, int p, int q, float** a, float** b, fl
  * @param a the matrix - M: n x m.
  * @param row1 the first row to swap.
  * @param row2 the second row to swap.
+ * @param swap the swapped matrix.
  */
-void swapRowMatrix(int n, int m, float** a, int row1, int row2);
+void swapRowMatrix(int n, int m, float** a, int row1, int row2, float** swap);
 
 /**
  * Swaps 2 columns of a matrix.
@@ -393,8 +394,9 @@ void swapRowMatrix(int n, int m, float** a, int row1, int row2);
  * @param a the matrix - M: n x m.
  * @param col1 the first column to swap.
  * @param col2 the second column to swap.
+ * @param swap the swapped matrix.
  */
-void swapColumnMatrix(int n, int m, float** a, int col1, int col2);
+void swapColumnMatrix(int n, int m, float** a, int col1, int col2, float** swap);
 
 /**
  * Find the maximum value in a matrix.
@@ -436,9 +438,10 @@ float* diagonalMatrix(int n, int m, float** a);
  * @param n the number of row.
  * @param m the number of column.
  * @param a the matrix - M: n x m.
+ * @param pivotsNumber the number of pivots.
  * @return the list of pivots.
  */
-float* pivot(int n, int m, float** a);
+float* pivot(int n, int m, float** a, int *pivotsNumber);
 
 /**
  * Decomposition of a matrix using Lower-Upper Decomposition - [A]=[L]*[U].

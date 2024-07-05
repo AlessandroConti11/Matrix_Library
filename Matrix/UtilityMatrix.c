@@ -12,8 +12,9 @@
  * @param a the matrix - M: n x m.
  * @param row1 the first row to swap.
  * @param row2 the second row to swap.
+ * @param swap the swapped matrix.
  */
-void swapRowMatrix(int n, int m, float** a, int row1, int row2) {
+void swapRowMatrix(int n, int m, float** a, int row1, int row2, float** swap) {
     assert(n > 0);
     assert(m > 0);
     assert(row1 <= n);
@@ -22,10 +23,12 @@ void swapRowMatrix(int n, int m, float** a, int row1, int row2) {
     //Temporary variable used for the swap procedure.
     float tmp = 0;
 
+    copyMatrix(n, m, a, swap);
+
     for (int i = 0; i < m; ++i) {
         tmp = a[row1][i];
-        a[row1][i] = a[row2][i];
-        a[row2][i] = tmp;
+        swap[row1][i] = a[row2][i];
+        swap[row2][i] = tmp;
     }
 }
 
@@ -37,8 +40,9 @@ void swapRowMatrix(int n, int m, float** a, int row1, int row2) {
  * @param a the matrix - M: n x m.
  * @param col1 the first column to swap.
  * @param col2 the second column to swap.
+ * @param swap the swapped matrix.
  */
-void swapColumnMatrix(int n, int m, float** a, int col1, int col2) {
+void swapColumnMatrix(int n, int m, float** a, int col1, int col2, float** swap) {
     assert(n > 0);
     assert(m > 0);
     assert(col1 <= m);
@@ -47,10 +51,12 @@ void swapColumnMatrix(int n, int m, float** a, int col1, int col2) {
     //Temporary variable used for the swap procedure.
     float tmp = 0;
 
+    copyMatrix(n, m, a, swap);
+
     for (int i = 0; i < n; ++i) {
         tmp = a[i][col1];
-        a[i][col1] = a[i][col2];
-        a[i][col2] = tmp;
+        swap[i][col1] = a[i][col2];
+        swap[i][col2] = tmp;
     }
 }
 
@@ -139,9 +145,10 @@ float* diagonalMatrix(int n, int m, float** a) {
  * @param n the number of row.
  * @param m the number of column.
  * @param a the matrix - M: n x m.
+ * @param pivotsNumber the number of pivots.
  * @return the list of pivots.
  */
-float* pivot(int n, int m, float** a) {
+float* pivot(int n, int m, float** a, int *pivotsNumber) {
     //The step matrix.
     float** step = createMatrix(n, m);
     //The pivot list.
@@ -160,6 +167,7 @@ float* pivot(int n, int m, float** a) {
         }
     }
 
+    *pivotsNumber = pivotCounter - 1;
     free(step);
     return pivots;
 }

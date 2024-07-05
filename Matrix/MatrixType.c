@@ -366,7 +366,7 @@ void stepMatrix(int n, int m, float** a, float** step) {
         //find the first non null position
         for (int j = elX; j < m; ++j) {
             for (int i = elY; i < n; ++i) {
-                if (a[i][j] != 0) {
+                if (step[i][j] != 0) {
                     elX = i;
                     elY = j;
                     goto END;
@@ -376,11 +376,11 @@ void stepMatrix(int n, int m, float** a, float** step) {
         END:
 
         //swap the first row with the one that has the first element different from 0
-        swapRowMatrix(n, m, a, elX, counter);
+        swapRowMatrix(n, m, step, elX, counter, step);
 
         for (int i = elX + 1; i < n; ++i) {
-            if (a[i][elY] != 0) {
-                cofactor = (float) a[i][elY] / a[elX][elY];
+            if (step[i][elY] != 0) {
+                cofactor = (float) step[i][elY] / step[elX][elY];
                 for (int j = elY; j < m; ++j) {
                     step[i][j] -= cofactor * step[elX][j];
                 }
