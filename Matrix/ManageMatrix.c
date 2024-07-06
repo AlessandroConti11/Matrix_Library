@@ -67,10 +67,11 @@ struct Matrix *createIdentityMatrix(int n) {
 /**
  * Creates a null matrix - M: n x n.
  *
- * @param n the matrix order.
+ * @param n the number of row.
+ * @param m the number of column.
  * @return the null matrix - M: n x n.
  */
-struct Matrix *createNullMatrix(int n) {
+struct Matrix *createNullMatrix(int n, int m) {
     assert(n > 0);
 
     //The matrix to create.
@@ -81,12 +82,12 @@ struct Matrix *createNullMatrix(int n) {
     assert(a->matrix != NULL);
 
     for (int i = 0; i < n; ++i) {
-        a->matrix[i] = (float *) calloc(n, sizeof(float));
+        a->matrix[i] = (float *) calloc(m, sizeof(float));
         assert(a->matrix[i] != NULL);
     }
 
     a->n = n;
-    a->m = n;
+    a->m = m;
 
     return a;
 }
@@ -119,15 +120,15 @@ void initializeMatrix(struct Matrix *a, ...) {
  * Copies a matrix.
  *
  * @param a the matrix to be copied - M: n x m.
- * @param b the copied matrix - M: n x m.
+ * @param b the copied matrix - M: p x q with p>=n && q>=m.
  */
 void copyMatrix(struct Matrix *a, struct Matrix *b) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
     assert(b->m > 0);
-    assert(a->n == b->n);
-    assert(a->m == b->m);
+    assert(a->n <= b->n);
+    assert(a->m <= b->m);
 
     for (int i = 0; i < a->n; ++i) {
         for (int j = 0; j < a->m; ++j) {
@@ -145,7 +146,7 @@ void deleteMatrix(struct Matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
 
-    if (a->matrix == NULL) {
+    if (a == NULL || a->matrix == NULL) {
         return;
     }
 

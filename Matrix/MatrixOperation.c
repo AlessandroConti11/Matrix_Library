@@ -2,6 +2,7 @@
 #include <string.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "../Matrix.h"
 
@@ -9,33 +10,36 @@
 /**
  * Minor of a matrix.
  *
- * @param n the matrix order.
  * @param a the matrix - M: n x n.
  * @param row the row of the matrix to be deleted.
  * @param column the column of the matrix to be deleted.
  * @return the minor of the matrix.
  */
-float minor(int n, float** a, int row, int column) {
-    assert(n > 0);
+float minor(struct Matrix *a, int row, int column) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(a->m == a->n);
     assert(row >= 0);
-    assert(row < n);
+    assert(row < a->n);
     assert(column >= 0);
-    assert(column < n);
+    assert(column < a->m);
 
     //Minor row position.
     int minorRow = 0;
     //Minor column position.
     int minorColumn = 0;
     //Minor.
-    float** minor = createMatrix(n - 1, n - 1);
+    struct Matrix *minor = createMatrix(a->n - 1, a->m - 1);
+    assert(minor->n == a->n-1);
+    assert(minor->m == a->m-1);
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < a->n; ++i) {
         if (i != row) {
 
             minorColumn = 0;
-            for (int j = 0; j < n; ++j) {
+            for (int j = 0; j < a->m; ++j) {
                 if (j != column) {
-                    minor[minorRow][minorColumn] = a[i][j];
+                    minor->matrix[minorRow][minorColumn] = a->matrix[i][j];
                     minorColumn++;
                 }
             }
@@ -43,39 +47,42 @@ float minor(int n, float** a, int row, int column) {
         }
     }
 
-    return determinantMatrix(n - 1, minor);
+    return determinantMatrix(minor);
 }
 
 /**
  * Cofactor of a matrix.
  *
- * @param n the matrix order.
  * @param a the matrix - M: n x n.
  * @param row the row of the matrix to be deleted.
  * @param column the column of the matrix to be deleted.
  * @return the cofactor of the matrix.
  */
-float cofactor(int n, float** a, int row, int column) {
-    assert(n > 0);
+float cofactor(struct Matrix *a, int row, int column) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(a->m == a->n);
     assert(row >= 0);
-    assert(row < n);
+    assert(row < a->n);
     assert(column >= 0);
-    assert(column < n);
+    assert(column < a->m);
 
     //Cofactor row position.
     int cofRow = 0;
     //Cofactor column position.
     int cofColumn = 0;
     //Cofactor.
-    float** cof = createMatrix(n - 1, n - 1);
+    struct Matrix *cof = createMatrix(a->n - 1, a->m - 1);
+    assert(cof->n == a->n-1);
+    assert(cof->m == a->m-1);
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < a->n; ++i) {
         if (i != row) {
 
             cofColumn = 0;
-            for (int j = 0; j < n; ++j) {
+            for (int j = 0; j < a->m; ++j) {
                 if (j != column) {
-                    cof[cofRow][cofColumn] = a[i][j];
+                    cof->matrix[cofRow][cofColumn] = a->matrix[i][j];
                     cofColumn++;
                 }
             }
@@ -83,27 +90,28 @@ float cofactor(int n, float** a, int row, int column) {
         }
     }
 
-    return (row + column) % 2 == 0 ? determinantMatrix(n - 1, cof) : -determinantMatrix(n - 1, cof);
+    return (row + column) % 2 == 0 ? determinantMatrix(cof) : -determinantMatrix(cof);
 }
 
 /**
  * Determinant of the matrix.
  *
- * @param n the matrix order.
  * @param a the matrix n x n.
  * @return the determinant of the matrix.
  */
-float determinantMatrix(int n, float** a) {
-    assert(n > 0);
+float determinantMatrix(struct Matrix *a) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(a->m == a->n);
 
     //M: 1 x 1
-    if (n == 1) {
-        return a[0][0];
+    if (a->n == 1) {
+        return a->matrix[0][0];
     }
 
     //M: 2 x 2
-    if (n == 2) {
-        return a[0][0] * a[1][1] - a[0][1] * a[1][0];
+    if (a->n == 2) {
+        return a->matrix[0][0] * a->matrix[1][1] - a->matrix[0][1] * a->matrix[1][0];
     }
 
     //M: n x n with n > 2
@@ -111,11 +119,11 @@ float determinantMatrix(int n, float** a) {
     float det = 0;
 
     //det = SUM(a[0][i] * Cof(a[0][i]))
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < a->n; i++) {
         //compute the cofactor
         det += i % 2 == 0
-                   ? a[0][i] * minor(n, a, 0, i)
-                   : -a[0][i] * minor(n, a, 0, i);
+                   ? a->matrix[0][i] * minor(a, 0, i)
+                   : -a->matrix[0][i] * minor(a, 0, i);
     }
     return det;
 }
@@ -123,44 +131,44 @@ float determinantMatrix(int n, float** a) {
 /**
  * Rank of a matrix - minor method.
  *
- * @param n the number of row.
- * @param m the number of column.
  * @param a the matrix - M: n x m.
  * @return the rank of the matrix.
  */
-int rankMatrix(int n, int m, float** a) {
-    assert(n > 0);
-    assert(m > 0);
+int rankMatrix(struct Matrix *a) {
+    assert(a->n > 0);
+    assert(a->m > 0);
 
-    if (n == m) {
+    if (a->n == a->m) {
         //if [A] is a square matrix, detA is different from 0 so the rank is the matrix order
-        if (determinantMatrix(n, a) != 0) {
-            return n;
+        if (determinantMatrix(a) != 0) {
+            return a->n;
         }
     }
 
     //general case for non-square matrices or square matrices with zero determinant
 
     //The maximum possible rank is the smaller dimension.
-    int order = n < m ? n : m;
+    int order = a->n < a->m ? a->n : a->m;
 
     for (int k = order; k > 0; --k) {
         //check all k x k minors
-        for (int i = 0; i <= n - k; ++i) {
-            for (int j = 0; j <= m - k; ++j) {
+        for (int i = 0; i <= a->n - k; ++i) {
+            for (int j = 0; j <= a->m - k; ++j) {
                 //Extracts k x k minor starting at (i, j)
-                float** minorMatrix = createMatrix(k, k);
+                struct Matrix *minorMatrix = createMatrix(k, k);
+                assert(minorMatrix->n == k);
+                assert(minorMatrix->m == k);
 
                 for (int row = 0; row < k; ++row) {
                     for (int col = 0; col < k; ++col) {
-                        minorMatrix[row][col] = a[i + row][j + col];
+                        minorMatrix->matrix[row][col] = a->matrix[i + row][j + col];
                     }
                 }
                 //check if this minor has a non-zero determinant
-                if (determinantMatrix(k, minorMatrix) != 0) {
+                if (determinantMatrix(minorMatrix) != 0) {
                     return k;
                 }
-                deleteMatrix(k, k, minorMatrix);
+                deleteMatrix(minorMatrix);
             }
         }
     }
@@ -173,19 +181,27 @@ int rankMatrix(int n, int m, float** a) {
 /**
  * Sum of matrices.
  *
- * @param n the number of row.
- * @param m the number of column.
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: n x m.
  * @param res the result: [a] + [b] - M: n x m.
  */
-void sumMatrix(int n, int m, float** a, float** b, float** res) {
-    assert(n > 0);
-    assert(m > 0);
+void sumMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(b->n > 0);
+    assert(b->m > 0);
+    assert(b->n == a->n);
+    assert(b->m == a->m);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            res[i][j] = a[i][j] + b[i][j];
+    if (res == NULL) {
+        res = createMatrix(a->n, a->m);
+    }
+    assert(res->n == a->n);
+    assert(res->m == a->m);
+
+    for (int i = 0; i < a->n; ++i) {
+        for (int j = 0; j < a->m; ++j) {
+            res->matrix[i][j] = a->matrix[i][j] + b->matrix[i][j];
         }
     }
 }
@@ -193,19 +209,27 @@ void sumMatrix(int n, int m, float** a, float** b, float** res) {
 /**
  * Difference of matrices.
  *
- * @param n the number of row.
- * @param m the number of column.
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: n x m.
  * @param res the result: [a] + [b] - M: n x m.
  */
-void subMatrix(int n, int m, float** a, float** b, float** res) {
-    assert(n > 0);
-    assert(m > 0);
+void subMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(b->n > 0);
+    assert(b->m > 0);
+    assert(b->n == a->n);
+    assert(b->m == a->m);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            res[i][j] = a[i][j] - b[i][j];
+    if (res == NULL) {
+        res = createMatrix(a->n, a->m);
+    }
+    assert(res->n == a->n);
+    assert(res->m == a->m);
+
+    for (int i = 0; i < a->n; ++i) {
+        for (int j = 0; j < a->m; ++j) {
+            res->matrix[i][j] = a->matrix[i][j] - b->matrix[i][j];
         }
     }
 }
@@ -213,20 +237,23 @@ void subMatrix(int n, int m, float** a, float** b, float** res) {
 /**
  * Matrix scalar product.
  *
- * @param n the number of row.
- * @param m the number of column.
  * @param scalar the scalar number.
  * @param a the matrix - M: n x m.
  * @param res the result: scalar * [a] - M: n x m.
  */
-void scalarProductMatrix(int n, int m, float scalar, float** a, float** res) {
-    assert(n > 0);
-    assert(m > 0);
+void scalarProductMatrix(float scalar, struct Matrix *a, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            res[i][j] = scalar * a[i][j];
-            printf("res: %f\n", res[i][j]);
+    if (res == NULL) {
+        res = createMatrix(a->n, a->m);
+    }
+    assert(res->n == a->n);
+    assert(res->m == a->m);
+
+    for (int i = 0; i < a->n; ++i) {
+        for (int j = 0; j < a->m; ++j) {
+            res->matrix[i][j] = scalar * a->matrix[i][j];
         }
     }
 }
@@ -234,23 +261,28 @@ void scalarProductMatrix(int n, int m, float scalar, float** a, float** res) {
 /**
  * Product of matrices.
  *
- * @param n the number of row in the first matrix.
- * @param p the number of column in the first matrix and the number of row in the second matrix.
- * @param m the number of column in the second matrix.
  * @param a the first matrix - M: n x p.
  * @param b the second matrix - M: p x m.
  * @param res the result: [a] x [b] - M: n x m.
  */
-void productMatrix(int n, int p, int m, float** a, float** b, float** res) {
-    assert(n > 0);
-    assert(p > 0);
-    assert(m > 0);
+void productMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(b->n > 0);
+    assert(b->m > 0);
+    assert(b->n == a->m);
 
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            res[i][j] = 0;
-            for (int k = 0; k < p; ++k) {
-                res[i][j] += a[i][k] * b[k][j];
+    if (res == NULL) {
+        res = createMatrix(a->n, b->m);
+    }
+    assert(res->n == a->n);
+    assert(res->m == b->m);
+
+    for (int i = 0; i < a->n; ++i) {
+        for (int j = 0; j < b->m; ++j) {
+            res->matrix[i][j] = 0;
+            for (int k = 0; k < a->m; ++k) {
+                res->matrix[i][j] += a->matrix[i][k] * b->matrix[k][j];
             }
         }
     }
@@ -259,62 +291,69 @@ void productMatrix(int n, int p, int m, float** a, float** b, float** res) {
 /**
  * Matrix power elevation.
  *
- * @param n the matrix order.
  * @param a the matrix - M: n x n.
  * @param k the exponent.
  * @param res the result: [a]^k - M: n x n.
  */
-void powerMatrix(int n, float** a, int k, float** res) {
-    assert(n > 0);
+void powerMatrix(struct Matrix *a, int k, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(a->m == a->n);
     assert(k >= 0);
 
     //Temporary matrix.
-    float** tmp = createMatrix(n, n);
+    struct Matrix *tmp = createMatrix(a->n, a->m);
+    assert(tmp->n == a->n);
+    assert(tmp->m == a->m);
 
     //initialize the res matrix
-    deleteMatrix(n, n, res);
-    res = createIdentityMatrix(n);
+    deleteMatrix(res);
+    res = createIdentityMatrix(a->n);
+    assert(res->n == a->n);
+    assert(res->m == a->m);
 
     //compute the power
     for (int i = 0; i < k; ++i) {
-        productMatrix(n, n, n, res, a, tmp);
-        copyMatrix(n, n, tmp, res);
+        productMatrix(res, a, tmp);
+        copyMatrix(tmp, res);
     }
 
     //delete
-    deleteMatrix(n, n, tmp);
+    deleteMatrix(tmp);
 }
 
 /**
  * Direct sum of matrices.
  *
- * @param n the number of row of the first matrix.
- * @param m the number of column of the first matrix.
- * @param p the number of row of the second matrix.
- * @param q the number of column of the second matrix.
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: p x q.
  * @param res the result: [a] (+) [b] - M: n+p x m+q.
  */
-void directSumMatrix(int n, int m, int p, int q, float** a, float** b, float** res) {
-    assert(n > 0);
-    assert(m > 0);
-    assert(p > 0);
-    assert(q > 0);
+void directSumMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(b->n > 0);
+    assert(b->m > 0);
 
-    for (int i = 0; i < n + p; ++i) {
-        for (int j = 0; j < m + q; ++j) {
+    if (res == NULL) {
+        res = createMatrix(a->n + b->n, a->m + b->m);
+    }
+    assert(res->n == a->n + b->n);
+    assert(res->m == a->m + b->m);
+
+    for (int i = 0; i < a->n + b->n; ++i) {
+        for (int j = 0; j < a->m + b->m; ++j) {
             //upper left corner - first matrix
-            if (i < n && j < m) {
-                res[i][j] = a[i][j];
+            if (i < a->n && j < a->m) {
+                res->matrix[i][j] = a->matrix[i][j];
             }
             //bottom right corner - second matrix
-            else if (i >= n && j >= m) {
-                res[i][j] = b[i - n][j - m];
+            else if (i >= a->n && j >= a->m) {
+                res->matrix[i][j] = b->matrix[i - a->n][j - a->m];
             }
             //other position - 0
             else {
-                res[i][j] = 0;
+                res->matrix[i][j] = 0;
             }
         }
     }
@@ -323,23 +362,25 @@ void directSumMatrix(int n, int m, int p, int q, float** a, float** b, float** r
 /**
  * Kronecker product of matrices.
  *
- * @param n the number of row of the first matrix.
- * @param m the number of column of the first matrix.
- * @param p the number of row of the second matrix.
- * @param q the number of column of the second matrix.
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: p x q.
  * @param res the result: [a] (x) [b] - M: n*p x m*q.
  */
-void kroneckerProductMatrix(int n, int m, int p, int q, float** a, float** b, float** res) {
-    assert(n > 0);
-    assert(m > 0);
-    assert(p > 0);
-    assert(q > 0);
+void kroneckerProductMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+    assert(a->n > 0);
+    assert(a->m > 0);
+    assert(b->n > 0);
+    assert(b->m > 0);
 
-    for (int i = 0; i < n * p; ++i) {
-        for (int j = 0; j < m * q; ++j) {
-            res[i][j] = a[i /p][j / q] * b[i % p][j % q];
+    if (res == NULL) {
+        res = createMatrix(a->n * b->n, a->m * b->m);
+    }
+    assert(res->n == a->n * b->n);
+    assert(res->m == a->m * b->m);
+
+    for (int i = 0; i < a->n * b->n; ++i) {
+        for (int j = 0; j < a->m * b->m; ++j) {
+            res->matrix[i][j] = a->matrix[i / b->n][j / b->m] * b->matrix[i % b->n][j % b->m];
         }
     }
 }

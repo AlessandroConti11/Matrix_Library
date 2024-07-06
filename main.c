@@ -886,7 +886,7 @@ int main(void) {
 //    } while (choice != 39);
 
 
-    struct Matrix *a = createNullMatrix(2);
+    struct Matrix *a = createNullMatrix(2, 2);
     printMatrix(a);
 
 
