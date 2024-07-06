@@ -6,6 +6,13 @@
 #include "Matrix.h"
 
 
+/**
+ * Generates a matrix - M: row x column.
+ *
+ * @param row the number of row.
+ * @param column the number of column.
+ * @return the matrix - M: row x column.
+ */
 matrix *generateMatrixNxM(int *row, int *column) {
     //Matrix.
     matrix *matrix = NULL;
@@ -33,6 +40,11 @@ matrix *generateMatrixNxM(int *row, int *column) {
     return matrix;
 }
 
+/**
+ * Generates a matrix - M: row x row.
+ * @param row the matrix order.
+ * @return the matrix - M: row x row.
+ */
 matrix *generateMatrixNxN(int *row) {
     //Matrix.
     matrix *matrix = NULL;
@@ -58,6 +70,9 @@ matrix *generateMatrixNxN(int *row) {
 }
 
 
+/**
+ * Prints all possible choices.
+ */
 void printChoice() {
     printf("Choose which operation you want to perform from the following ones:\n"
            "1. create an identity matrix\n"
@@ -102,6 +117,11 @@ void printChoice() {
            "\n\n");
 }
 
+/**
+ * Handles the user's choice.
+ *
+ * @param choice the choice.
+ */
 void manageChoice(int *choice) {
     //The number of row of the matrices.
     int row1 = 0, row2 = 0;
@@ -110,7 +130,7 @@ void manageChoice(int *choice) {
     //Scalar value.
     float k = 0;
     //Matrices.
-    matrix *matrix1 = NULL, matrix *matrix2 = NULL, matrix *res = NULL;
+    matrix *matrix1 = NULL, *matrix2 = NULL, *res = NULL;
     //Array.
     float *array = NULL;
     //Return scanf value.
@@ -866,6 +886,11 @@ void manageChoice(int *choice) {
 }
 
 
+/**
+ * Program Main.
+ *
+ * @return 0 if the program finished execution successfully.
+ */
 int main(void) {
     //The user choice.
     int choice = -1;
@@ -887,11 +912,6 @@ int main(void) {
         sleep(5);
 
     } while (choice != 39);
-
-
-    matrix *a = createNullMatrix(2, 2);
-    printMatrix(a);
-
 
     return 0;
 }

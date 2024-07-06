@@ -2,13 +2,12 @@
 #include <string.h>
 #include <assert.h>
 #include <stdlib.h>
-#include <time.h>
 
 #include "../Matrix.h"
 
 
 /**
- * Minor of a matrix.
+ * Computes the minor of a matrix.
  *
  * @param a the matrix - M: n x n.
  * @param row the row of the matrix to be deleted.
@@ -51,7 +50,7 @@ float minor(matrix *a, int row, int column) {
 }
 
 /**
- * Cofactor of a matrix.
+ * Computes the cofactor of a matrix.
  *
  * @param a the matrix - M: n x n.
  * @param row the row of the matrix to be deleted.
@@ -94,7 +93,7 @@ float cofactor(matrix *a, int row, int column) {
 }
 
 /**
- * Determinant of the matrix.
+ * Computes the determinant of the matrix.
  *
  * @param a the matrix n x n.
  * @return the determinant of the matrix.
@@ -129,7 +128,7 @@ float determinantMatrix(matrix *a) {
 }
 
 /**
- * Rank of a matrix - minor method.
+ * Computes the rank of a matrix - minor method.
  *
  * @param a the matrix - M: n x m.
  * @return the rank of the matrix.
@@ -179,7 +178,7 @@ int rankMatrix(matrix *a) {
 
 
 /**
- * Sum of matrices.
+ * Computes the sum of matrices.
  *
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: n x m.
@@ -207,7 +206,7 @@ void sumMatrix(matrix *a, matrix *b, matrix *res) {
 }
 
 /**
- * Difference of matrices.
+ * Computes the difference of matrices.
  *
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: n x m.
@@ -235,7 +234,7 @@ void subMatrix(matrix *a, matrix *b, matrix *res) {
 }
 
 /**
- * Matrix scalar product.
+ * Computes the scalar product of the matrix.
  *
  * @param scalar the scalar number.
  * @param a the matrix - M: n x m.
@@ -259,7 +258,7 @@ void scalarProductMatrix(float scalar, matrix *a, matrix *res) {
 }
 
 /**
- * Product of matrices.
+ * Computes the product of matrices.
  *
  * @param a the first matrix - M: n x p.
  * @param b the second matrix - M: p x m.
@@ -289,7 +288,7 @@ void productMatrix(matrix *a, matrix *b, matrix *res) {
 }
 
 /**
- * Matrix power elevation.
+ * Computes the power elevation of a matrix.
  *
  * @param a the matrix - M: n x n.
  * @param k the exponent.
@@ -323,7 +322,7 @@ void powerMatrix(matrix *a, int k, matrix *res) {
 }
 
 /**
- * Direct sum of matrices.
+ * Computes the direct sum of matrices.
  *
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: p x q.
@@ -360,7 +359,7 @@ void directSumMatrix(matrix *a, matrix *b, matrix *res) {
 }
 
 /**
- * Kronecker product of matrices.
+ * Computes the Kronecker product of matrices.
  *
  * @param a the first matrix - M: n x m.
  * @param b the second matrix - M: p x q.

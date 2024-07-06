@@ -7,7 +7,7 @@
 
 
 /**
- * Checks if a matrix is an identity ones.
+ * Checks if a matrix is an identity matrix.
  *
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is an identity, 0 otherwise.
@@ -36,7 +36,7 @@ int isIdentityMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is a null ones.
+ * Checks if a matrix is a null matrix.
  *
  * @param a the matrix - M: n x m.
  * @return 1 if the matrix is a null matrix, 0 otherwise.
@@ -60,7 +60,7 @@ int isNullMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is diagonal.
+ * Checks if a matrix is diagonal matrix.
  *
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is diagonal, 0 otherwise.
@@ -84,10 +84,10 @@ int isDiagonalMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is antidiagonal.
+ * Checks if a matrix is anti-diagonal matrix.
  *
  * @param a the matrix - M: n x n.
- * @return 1 if the matrx is antidiagonal, 0 otherwise.
+ * @return 1 if the matrx is anti-diagonal, 0 otherwise.
  */
 int isAntidiagonalMatrix(matrix *a) {
     assert(a->n > 0);
@@ -107,7 +107,7 @@ int isAntidiagonalMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is an upper diagonal ones.
+ * Checks if a matrix is an upper diagonal matrix.
  *
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is upper diagonal, 0 otherwise.
@@ -130,7 +130,7 @@ int isUpperDiagonalMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is a lower diagonal ones.
+ * Checks if a matrix is a lower diagonal matrix.
  *
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is lower diagonal, 0 otherwise.
@@ -153,7 +153,7 @@ int isLowerDiagonalMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is a symmetric ones.
+ * Checks if a matrix is a symmetric matrix.
  *
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is symmetric, 0 otherwise.
@@ -176,7 +176,7 @@ int isSymmetricMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is a antisymmetric ones.
+ * Checks if a matrix is a antisymmetric matrix.
  *
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is antisymmetric, 0 otherwise.
@@ -219,10 +219,10 @@ int isInvertibleMatrix(matrix *a) {
 }
 
 /**
- * Checks if a matrix is a row echelon matrix.
+ * Checks if a matrix is a row-echelon matrix.
  *
  * @param a the matrix - M: n x m.
- * @return 1 if the matrix is a row echelon matrix, 0 otherwise.
+ * @return 1 if the matrix is a row-echelon matrix, 0 otherwise.
  */
 int isRowEchelonMatrix(matrix *a) {
     assert(a->n > 0);
@@ -312,7 +312,7 @@ int isToeplitzMatrix(matrix *a) {
  * Matrix transposition.
  *
  * @param a the matrix - M: n x m.
- * @param trans the result: [a]^T - M: m x n.
+ * @param trans the the transposed matrix: [a]^T - M: m x n.
  */
 void transposingMatrix(matrix *a, matrix *trans) {
     assert(a->n > 0);
@@ -332,10 +332,10 @@ void transposingMatrix(matrix *a, matrix *trans) {
 }
 
 /**
- * Matrix inverse - cofactor matrix method.
+ * Matrix inversion - cofactor matrix method.
  *
  * @param a the matrix - M: n x n.
- * @param inv the inverse of the matrix - M: n x n.
+ * @param inv the inverse of the matrix: [a]^-1 - M: n x n.
  */
 void inverseMatrix(matrix *a, matrix *inv) {
     assert(a->n > 0);
@@ -361,10 +361,10 @@ void inverseMatrix(matrix *a, matrix *inv) {
 
 
 /**
- * Row echelon matrix - Gaussian elimination method.
+ * Transform a matrix to a row-echelon matrix - Gaussian elimination method.
  *
  * @param a the matrix - M: n x m.
- * @param step the row echelon transformed matrix - M: n x m.
+ * @param step the row-echelon transformed matrix - M: n x m.
  */
 void rowEchelonMatrix(matrix *a, matrix *step) {
     assert(a->n > 0);

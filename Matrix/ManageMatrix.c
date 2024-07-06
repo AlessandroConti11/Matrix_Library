@@ -93,7 +93,7 @@ matrix *createNullMatrix(int n, int m) {
 }
 
 /**
- * Initialize a matrix.
+ * Initializes a matrix.
  *
  * @param a the matrix to initialize - M: n x m.
  * @param ... the matrix elements.
@@ -140,7 +140,7 @@ void copyMatrix(matrix *a, matrix *b) {
 /**
  * Deletes a matrix.
  *
- * @param a the matrix to delete - M: n x m.
+ * @param a the matrix to be deleted - M: n x m.
  */
 void deleteMatrix(matrix *a) {
     assert(a->n > 0);
@@ -165,9 +165,9 @@ void deleteMatrix(matrix *a) {
 
 /**
  * Prints a matrix.
- * digits integer part: 5
- * digits decimal part: 5
  *
+ * @details digits integer part: 5
+ * @details digits decimal part: 5
  * @param a the matrix to print - M: n x m.
  */
 void printMatrix(matrix *a) {
