@@ -14,18 +14,24 @@
  * @param m the number of column.
  * @return the matrix - M: n x m.
  */
-float** createMatrix(int n, int m) {
+struct Matrix *createMatrix(int n, int m) {
     assert(n > 0);
     assert(m > 0);
 
     //The matrix to create.
-    float **a = (float **) malloc(n * sizeof(float *));
+//    float **a = (float **) malloc(n * sizeof(float *));
+    struct Matrix *a = (struct Matrix *) malloc(sizeof(struct Matrix));
     assert(a != NULL);
 
+    a->matrix = (float **) malloc(n * sizeof(float *));
+    assert(a->matrix != NULL);
     for (int i = 0; i < n; ++i) {
-        a[i] = (float *) malloc(m * sizeof(float));
-        assert(a[i] != NULL);
+        a->matrix[i] = (float *) malloc(m * sizeof(float));
+        assert(a->matrix[i] != NULL);
     }
+
+    a->n = n;
+    a->m = m;
 
     return a;
 }
