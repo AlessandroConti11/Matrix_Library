@@ -36,7 +36,7 @@
     * @param n the matrix order.
     * @return the identity matrix - M: n x n.
     */
-    float** createIdentityMatrix(int n);
+    struct Matrix *createIdentityMatrix(int n);
 
     /**
     * Creates a null matrix - M: n x n.
@@ -44,47 +44,39 @@
     * @param n the matrix order.
     * @return the null matrix - M: n x n.
     */
-    float** createNullMatrix(int n);
+    struct Matrix *createNullMatrix(int n);
 
     /**
     * Initialize a matrix.
     *
-    * @param n the number of row.
-    * @param m the number of column.
     * @param a the matrix to initialize - M: n x m.
     * @param ... the matrix elements.
     */
-    void initializeMatrix(int n, int m, float** a, ...);
+    void initializeMatrix(struct Matrix *a, ...);
 
     /**
     * Copies a matrix.
     *
-    * @param n the number of row.
-    * @param m the number of column.
     * @param a the matrix to be copied - M: n x m.
     * @param b the copied matrix - M: n x m.
     */
-    void copyMatrix(int n, int m, float** a, float** b);
+    void copyMatrix(struct Matrix *a, struct Matrix *b);
 
     /**
     * Deletes a matrix.
     *
-    * @param n the number of row.
-    * @param m the number of column.
     * @param a the matrix to delete - M: n x m.
     */
-    void deleteMatrix(int n, int m, float** a);
+    void deleteMatrix(struct Matrix *a);
 
     /**
     * Prints a matrix.
     * digits integer part: 5
     * digits decimal part: 5
     *
-    * @param n the number of row.
-    * @param m the number of column.
     * @param a the matrix to print - M: n x m.
     */
-    void printMatrix(int n, int m, float** a);
+    void printMatrix(struct Matrix *a);
 
 
     //******************************************************************************************************************//
