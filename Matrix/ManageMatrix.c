@@ -14,12 +14,12 @@
  * @param m the number of column.
  * @return the matrix - M: n x m.
  */
-struct Matrix *createMatrix(int n, int m) {
+matrix *createMatrix(int n, int m) {
     assert(n > 0);
     assert(m > 0);
 
     //The matrix to create.
-    struct Matrix *a = (struct Matrix *) malloc(sizeof(struct Matrix));
+    matrix *a = (matrix *) malloc(sizeof(matrix));
     assert(a != NULL);
 
     a->matrix = (float **) malloc(n * sizeof(float *));
@@ -41,11 +41,11 @@ struct Matrix *createMatrix(int n, int m) {
  * @param n the matrix order.
  * @return the identity matrix - M: n x n.
  */
-struct Matrix *createIdentityMatrix(int n) {
+matrix *createIdentityMatrix(int n) {
     assert(n > 0);
 
     //The matrix to create.
-    struct Matrix *a = (struct Matrix *) malloc(sizeof(struct Matrix));
+    matrix *a = (matrix *) malloc(sizeof(matrix));
     assert(a != NULL);
 
     a->matrix = (float **) malloc(n * sizeof(float *));
@@ -71,11 +71,11 @@ struct Matrix *createIdentityMatrix(int n) {
  * @param m the number of column.
  * @return the null matrix - M: n x n.
  */
-struct Matrix *createNullMatrix(int n, int m) {
+matrix *createNullMatrix(int n, int m) {
     assert(n > 0);
 
     //The matrix to create.
-    struct Matrix *a = (struct Matrix *) malloc(sizeof(struct Matrix));
+    matrix *a = (matrix *) malloc(sizeof(matrix));
     assert(a != NULL);
 
     a->matrix = (float **) malloc(n * sizeof(float *));
@@ -98,7 +98,7 @@ struct Matrix *createNullMatrix(int n, int m) {
  * @param a the matrix to initialize - M: n x m.
  * @param ... the matrix elements.
  */
-void initializeMatrix(struct Matrix *a, ...) {
+void initializeMatrix(matrix *a, ...) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -122,7 +122,7 @@ void initializeMatrix(struct Matrix *a, ...) {
  * @param a the matrix to be copied - M: n x m.
  * @param b the copied matrix - M: p x q with p>=n && q>=m.
  */
-void copyMatrix(struct Matrix *a, struct Matrix *b) {
+void copyMatrix(matrix *a, matrix *b) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
@@ -142,7 +142,7 @@ void copyMatrix(struct Matrix *a, struct Matrix *b) {
  *
  * @param a the matrix to delete - M: n x m.
  */
-void deleteMatrix(struct Matrix *a) {
+void deleteMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -170,7 +170,7 @@ void deleteMatrix(struct Matrix *a) {
  *
  * @param a the matrix to print - M: n x m.
  */
-void printMatrix(struct Matrix *a) {
+void printMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
 

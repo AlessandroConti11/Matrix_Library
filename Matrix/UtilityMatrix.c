@@ -13,7 +13,7 @@
  * @param row2 the second row to swap.
  * @param swap the swapped matrix.
  */
-void swapRowMatrix(struct Matrix *a, int row1, int row2, struct Matrix *swap) {
+void swapRowMatrix(matrix *a, int row1, int row2, matrix *swap) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(row1 <= a->n);
@@ -45,7 +45,7 @@ void swapRowMatrix(struct Matrix *a, int row1, int row2, struct Matrix *swap) {
  * @param col2 the second column to swap.
  * @param swap the swapped matrix.
  */
-void swapColumnMatrix(struct Matrix *a, int col1, int col2, struct Matrix *swap) {
+void swapColumnMatrix(matrix *a, int col1, int col2, matrix *swap) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(col1 <= a->n);
@@ -77,7 +77,7 @@ void swapColumnMatrix(struct Matrix *a, int col1, int col2, struct Matrix *swap)
  * @param colPos the column that contains the position with the maximum value.
  * @return the maximum value in the matrix.
  */
-float findMaxMatrix(struct Matrix *a, int *rowPos, int *colPos) {
+float findMaxMatrix(matrix *a, int *rowPos, int *colPos) {
     //Initialize the maximum value.
     float max = a->matrix[0][0];
     *rowPos = 0;
@@ -103,7 +103,7 @@ float findMaxMatrix(struct Matrix *a, int *rowPos, int *colPos) {
  * @param colPos the column that contains the position with the minimum value.
  * @return the minimum value in the matrix.
  */
-float findMinMatrix(struct Matrix *a, int *rowPos, int *colPos) {
+float findMinMatrix(matrix *a, int *rowPos, int *colPos) {
     //Initialize the maximum value.
     float min = a->matrix[0][0];
     *rowPos = 0;
@@ -128,7 +128,7 @@ float findMinMatrix(struct Matrix *a, int *rowPos, int *colPos) {
  * @param numberOfElements the number of elements on the diagonal.
  * @return the list of elements on the matrix diagonal.
  */
-float* diagonalMatrix(struct Matrix *a, int *numberOfElements) {
+float* diagonalMatrix(matrix *a, int *numberOfElements) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -150,12 +150,12 @@ float* diagonalMatrix(struct Matrix *a, int *numberOfElements) {
  * @param pivotsNumber the number of pivots.
  * @return the list of pivots.
  */
-float* pivot(struct Matrix *a, int *pivotsNumber) {
+float* pivot(matrix *a, int *pivotsNumber) {
     assert(a->n > 0);
     assert(a->m > 0);
 
     //The step matrix.
-    struct Matrix *step = createMatrix(a->n, a->m);
+    matrix *step = createMatrix(a->n, a->m);
     //The pivot list.
     float *pivots = malloc((a->n < a->m ? a->n : a->m) * sizeof(float));
     //The counter of pivots found.
@@ -184,7 +184,7 @@ float* pivot(struct Matrix *a, int *pivotsNumber) {
  * @param l the lower triangular matrix - M: n x n.
  * @param u the upper triangular matrix - M: n x n.
  */
-void luDecomposition(struct Matrix *a, struct Matrix *l, struct Matrix *u) {
+void luDecomposition(matrix *a, matrix *l, matrix *u) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->n == a->m);

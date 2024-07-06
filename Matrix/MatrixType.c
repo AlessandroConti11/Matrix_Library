@@ -12,7 +12,7 @@
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is an identity, 0 otherwise.
  */
-int isIdentityMatrix(struct Matrix *a) {
+int isIdentityMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -41,7 +41,7 @@ int isIdentityMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x m.
  * @return 1 if the matrix is a null matrix, 0 otherwise.
  */
-int isNullMatrix(struct Matrix *a) {
+int isNullMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -65,7 +65,7 @@ int isNullMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is diagonal, 0 otherwise.
  */
-int isDiagonalMatrix(struct Matrix *a) {
+int isDiagonalMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -89,7 +89,7 @@ int isDiagonalMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrx is antidiagonal, 0 otherwise.
  */
-int isAntidiagonalMatrix(struct Matrix *a) {
+int isAntidiagonalMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -112,7 +112,7 @@ int isAntidiagonalMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is upper diagonal, 0 otherwise.
  */
-int isUpperDiagonalMatrix(struct Matrix *a) {
+int isUpperDiagonalMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -135,7 +135,7 @@ int isUpperDiagonalMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is lower diagonal, 0 otherwise.
  */
-int isLowerDiagonalMatrix(struct Matrix *a) {
+int isLowerDiagonalMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -158,7 +158,7 @@ int isLowerDiagonalMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is symmetric, 0 otherwise.
  */
-int isSymmetricMatrix(struct Matrix *a) {
+int isSymmetricMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -181,7 +181,7 @@ int isSymmetricMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is antisymmetric, 0 otherwise.
  */
-int isAntisymmetricMatrix(struct Matrix *a) {
+int isAntisymmetricMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -204,7 +204,7 @@ int isAntisymmetricMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is invertible, 0 otherwise.
  */
-int isInvertibleMatrix(struct Matrix *a) {
+int isInvertibleMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -224,7 +224,7 @@ int isInvertibleMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x m.
  * @return 1 if the matrix is a row echelon matrix, 0 otherwise.
  */
-int isRowEchelonMatrix(struct Matrix *a) {
+int isRowEchelonMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -267,7 +267,7 @@ int isRowEchelonMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is an Hankel matrix, 0 otherwise.
  */
-int isHankelMatrix(struct Matrix *a) {
+int isHankelMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -290,7 +290,7 @@ int isHankelMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x n.
  * @return 1 if the matrix is a Toeplitz matrix, 0 otherwise.
  */
-int isToeplitzMatrix(struct Matrix *a) {
+int isToeplitzMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
@@ -314,7 +314,7 @@ int isToeplitzMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x m.
  * @param trans the result: [a]^T - M: m x n.
  */
-void transposingMatrix(struct Matrix *a, struct Matrix *trans) {
+void transposingMatrix(matrix *a, matrix *trans) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -337,7 +337,7 @@ void transposingMatrix(struct Matrix *a, struct Matrix *trans) {
  * @param a the matrix - M: n x n.
  * @param inv the inverse of the matrix - M: n x n.
  */
-void inverseMatrix(struct Matrix *a, struct Matrix *inv) {
+void inverseMatrix(matrix *a, matrix *inv) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -366,7 +366,7 @@ void inverseMatrix(struct Matrix *a, struct Matrix *inv) {
  * @param a the matrix - M: n x m.
  * @param step the row echelon transformed matrix - M: n x m.
  */
-void rowEchelonMatrix(struct Matrix *a, struct Matrix *step) {
+void rowEchelonMatrix(matrix *a, matrix *step) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -431,7 +431,7 @@ void rowEchelonMatrix(struct Matrix *a, struct Matrix *step) {
  * @param a the matrix - M: n x m.
  * @param abs the absolute value matrix - M: n x m.
  */
-void absMatrix(struct Matrix *a, struct Matrix *abs) {
+void absMatrix(matrix *a, matrix *abs) {
     assert(a->n > 0);
     assert(a->m > 0);
 

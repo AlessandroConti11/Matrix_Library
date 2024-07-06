@@ -15,7 +15,7 @@
  * @param column the column of the matrix to be deleted.
  * @return the minor of the matrix.
  */
-float minor(struct Matrix *a, int row, int column) {
+float minor(matrix *a, int row, int column) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -29,7 +29,7 @@ float minor(struct Matrix *a, int row, int column) {
     //Minor column position.
     int minorColumn = 0;
     //Minor.
-    struct Matrix *minor = createMatrix(a->n - 1, a->m - 1);
+    matrix *minor = createMatrix(a->n - 1, a->m - 1);
     assert(minor->n == a->n-1);
     assert(minor->m == a->m-1);
 
@@ -58,7 +58,7 @@ float minor(struct Matrix *a, int row, int column) {
  * @param column the column of the matrix to be deleted.
  * @return the cofactor of the matrix.
  */
-float cofactor(struct Matrix *a, int row, int column) {
+float cofactor(matrix *a, int row, int column) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -72,7 +72,7 @@ float cofactor(struct Matrix *a, int row, int column) {
     //Cofactor column position.
     int cofColumn = 0;
     //Cofactor.
-    struct Matrix *cof = createMatrix(a->n - 1, a->m - 1);
+    matrix *cof = createMatrix(a->n - 1, a->m - 1);
     assert(cof->n == a->n-1);
     assert(cof->m == a->m-1);
 
@@ -99,7 +99,7 @@ float cofactor(struct Matrix *a, int row, int column) {
  * @param a the matrix n x n.
  * @return the determinant of the matrix.
  */
-float determinantMatrix(struct Matrix *a) {
+float determinantMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -134,7 +134,7 @@ float determinantMatrix(struct Matrix *a) {
  * @param a the matrix - M: n x m.
  * @return the rank of the matrix.
  */
-int rankMatrix(struct Matrix *a) {
+int rankMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -155,7 +155,7 @@ int rankMatrix(struct Matrix *a) {
         for (int i = 0; i <= a->n - k; ++i) {
             for (int j = 0; j <= a->m - k; ++j) {
                 //Extracts k x k minor starting at (i, j)
-                struct Matrix *minorMatrix = createMatrix(k, k);
+                matrix *minorMatrix = createMatrix(k, k);
                 assert(minorMatrix->n == k);
                 assert(minorMatrix->m == k);
 
@@ -185,7 +185,7 @@ int rankMatrix(struct Matrix *a) {
  * @param b the second matrix - M: n x m.
  * @param res the result: [a] + [b] - M: n x m.
  */
-void sumMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+void sumMatrix(matrix *a, matrix *b, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
@@ -213,7 +213,7 @@ void sumMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
  * @param b the second matrix - M: n x m.
  * @param res the result: [a] + [b] - M: n x m.
  */
-void subMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+void subMatrix(matrix *a, matrix *b, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
@@ -241,7 +241,7 @@ void subMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
  * @param a the matrix - M: n x m.
  * @param res the result: scalar * [a] - M: n x m.
  */
-void scalarProductMatrix(float scalar, struct Matrix *a, struct Matrix *res) {
+void scalarProductMatrix(float scalar, matrix *a, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -265,7 +265,7 @@ void scalarProductMatrix(float scalar, struct Matrix *a, struct Matrix *res) {
  * @param b the second matrix - M: p x m.
  * @param res the result: [a] x [b] - M: n x m.
  */
-void productMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+void productMatrix(matrix *a, matrix *b, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
@@ -295,14 +295,14 @@ void productMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
  * @param k the exponent.
  * @param res the result: [a]^k - M: n x n.
  */
-void powerMatrix(struct Matrix *a, int k, struct Matrix *res) {
+void powerMatrix(matrix *a, int k, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
     assert(k >= 0);
 
     //Temporary matrix.
-    struct Matrix *tmp = createMatrix(a->n, a->m);
+    matrix *tmp = createMatrix(a->n, a->m);
     assert(tmp->n == a->n);
     assert(tmp->m == a->m);
 
@@ -329,7 +329,7 @@ void powerMatrix(struct Matrix *a, int k, struct Matrix *res) {
  * @param b the second matrix - M: p x q.
  * @param res the result: [a] (+) [b] - M: n+p x m+q.
  */
-void directSumMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+void directSumMatrix(matrix *a, matrix *b, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
@@ -366,7 +366,7 @@ void directSumMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
  * @param b the second matrix - M: p x q.
  * @param res the result: [a] (x) [b] - M: n*p x m*q.
  */
-void kroneckerProductMatrix(struct Matrix *a, struct Matrix *b, struct Matrix *res) {
+void kroneckerProductMatrix(matrix *a, matrix *b, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(b->n > 0);
