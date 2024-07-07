@@ -351,12 +351,17 @@ void inverseMatrix(matrix *a, matrix *inv) {
 
     //Inverse of the determinant
     float invDet = (float) 1 / determinantMatrix(a);
+    //Temporary matrix.
+    matrix *tmp = createMatrix(a->n, a->m);
 
     for (int i = 0; i < a->n; ++i) {
         for (int j = 0; j < a->n; ++j) {
-            inv->matrix[j][i] = invDet * cofactor(a, i, j);
+            tmp->matrix[j][i] = invDet * cofactor(a, i, j);
         }
     }
+
+    copyMatrix(tmp, inv);
+    deleteMatrix(tmp);
 }
 
 

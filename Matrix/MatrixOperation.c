@@ -277,12 +277,16 @@ void productMatrix(matrix *a, matrix *b, matrix *res) {
     assert(res->n == a->n);
     assert(res->m == b->m);
 
+    //Temporary variable used to save the product in position (i; j).
+    float tmp = 0;
+
     for (int i = 0; i < a->n; ++i) {
         for (int j = 0; j < b->m; ++j) {
             res->matrix[i][j] = 0;
             for (int k = 0; k < a->m; ++k) {
-                res->matrix[i][j] += a->matrix[i][k] * b->matrix[k][j];
+                tmp += a->matrix[i][k] * b->matrix[k][j];
             }
+            res->matrix[i][j] = tmp;
         }
     }
 }
@@ -300,8 +304,11 @@ void powerMatrix(matrix *a, int k, matrix *res) {
     assert(a->m == a->n);
     assert(k >= 0);
 
-    //Temporary matrix.
+    //Temporary matrix used for compute the product.
     matrix *tmp = createMatrix(a->n, a->m);
+    //Temporary matrix used if res is a.
+    matrix *aTmp = createMatrix(a->n, a->m);
+    copyMatrix(a, aTmp);
     assert(tmp->n == a->n);
     assert(tmp->m == a->m);
 
@@ -313,12 +320,13 @@ void powerMatrix(matrix *a, int k, matrix *res) {
 
     //compute the power
     for (int i = 0; i < k; ++i) {
-        productMatrix(res, a, tmp);
+        productMatrix(res, aTmp, tmp);
         copyMatrix(tmp, res);
     }
 
     //delete
     deleteMatrix(tmp);
+    deleteMatrix(aTmp);
 }
 
 /**
