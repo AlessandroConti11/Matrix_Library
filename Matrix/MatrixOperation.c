@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include <stdlib.h>
 
 #include "../Matrix.h"
 
@@ -14,7 +12,7 @@
  * @param column the column of the matrix to be deleted.
  * @return the minor of the matrix.
  */
-float minor(matrix *a, int row, int column) {
+double minor(matrix *a, int row, int column) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -57,7 +55,7 @@ float minor(matrix *a, int row, int column) {
  * @param column the column of the matrix to be deleted.
  * @return the cofactor of the matrix.
  */
-float cofactor(matrix *a, int row, int column) {
+double cofactor(matrix *a, int row, int column) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -98,7 +96,7 @@ float cofactor(matrix *a, int row, int column) {
  * @param a the matrix n x n.
  * @return the determinant of the matrix.
  */
-float determinantMatrix(matrix *a) {
+double determinantMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m > 0);
     assert(a->m == a->n);
@@ -115,7 +113,7 @@ float determinantMatrix(matrix *a) {
 
     //M: n x n with n > 2
     //Determinant to compute.
-    float det = 0;
+    double det = 0;
 
     //det = SUM(a[0][i] * Cof(a[0][i]))
     for (int i = 0; i < a->n; i++) {
@@ -240,7 +238,7 @@ void subMatrix(matrix *a, matrix *b, matrix *res) {
  * @param a the matrix - M: n x m.
  * @param res the result: scalar * [a] - M: n x m.
  */
-void scalarProductMatrix(float scalar, matrix *a, matrix *res) {
+void scalarProductMatrix(double scalar, matrix *a, matrix *res) {
     assert(a->n > 0);
     assert(a->m > 0);
 
@@ -278,7 +276,7 @@ void productMatrix(matrix *a, matrix *b, matrix *res) {
     assert(res->m == b->m);
 
     //Temporary variable used to save the product in position (i; j).
-    float tmp = 0;
+    double tmp = 0;
 
     for (int i = 0; i < a->n; ++i) {
         for (int j = 0; j < b->m; ++j) {

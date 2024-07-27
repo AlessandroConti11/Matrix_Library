@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include <stdlib.h>
 
 #include "../Matrix.h"
 
@@ -350,7 +348,7 @@ void inverseMatrix(matrix *a, matrix *inv) {
     assert(inv->m == a->m);
 
     //Inverse of the determinant
-    float invDet = (float) 1 / determinantMatrix(a);
+    double invDet = (double) 1 / determinantMatrix(a);
     //Temporary matrix.
     matrix *tmp = createMatrix(a->n, a->m);
 
@@ -388,7 +386,7 @@ void rowEchelonMatrix(matrix *a, matrix *step) {
     //Counter for rows.
     int counter = 0;
     //Cofactor.
-    float cofactor = 0;
+    double cofactor = 0;
     //First non-null position.
     int pivotFound = 0;
 

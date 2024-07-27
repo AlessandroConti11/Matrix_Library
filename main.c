@@ -31,7 +31,7 @@ matrix *generateMatrixNxM(int *row, int *column) {
     for (int i = 0; i < *row; ++i) {
         for (int j = 0; j < *column; ++j) {
             printf("Insert the value for position (%d; %d): ", i, j);
-            returnScanf = scanf("%f", &matrix->matrix[i][j]);
+            returnScanf = scanf("%lf", &matrix->matrix[i][j]);
             assert(returnScanf > 0);
         }
     }
@@ -60,7 +60,7 @@ matrix *generateMatrixNxN(int *row) {
     for (int i = 0; i < *row; ++i) {
         for (int j = 0; j < *row; ++j) {
             printf("Insert the value for position (%d; %d): ", i, j);
-            returnScanf = scanf("%f", &matrix->matrix[i][j]);
+            returnScanf = scanf("%lf", &matrix->matrix[i][j]);
             assert(returnScanf > 0);
         }
     }
@@ -128,11 +128,11 @@ void manageChoice(int *choice) {
     //The number of column of the matrices.
     int column1 = 0, column2 = 0;
     //Scalar value.
-    float k = 0;
+    double k = 0;
     //Matrices.
     matrix *matrix1 = NULL, *matrix2 = NULL, *res = NULL;
     //Array.
-    float *array = NULL;
+    double *array = NULL;
     //Return scanf value.
     int returnScanf = 0;
 
@@ -487,7 +487,7 @@ void manageChoice(int *choice) {
             printf("Matrix:\n");
             printMatrix(matrix1);
 
-            printf("The minor (%d; %d) of the matrix is: %f\n", row2, column1, minor(matrix1, row2, column1));
+            printf("The minor (%d; %d) of the matrix is: %lf\n", row2, column1, minor(matrix1, row2, column1));
 
             deleteMatrix(matrix1);
             printf("\n\n\n");
@@ -508,7 +508,7 @@ void manageChoice(int *choice) {
             printf("Matrix:\n");
             printMatrix(matrix1);
 
-            printf("The cofactor (%d; %d) of the matrix is: %f\n", row2, column1, cofactor(matrix1, row2, column1));
+            printf("The cofactor (%d; %d) of the matrix is: %lf\n", row2, column1, cofactor(matrix1, row2, column1));
 
             deleteMatrix(matrix1);
             printf("\n\n\n");
@@ -522,7 +522,7 @@ void manageChoice(int *choice) {
             printf("Matrix:\n");
             printMatrix(matrix1);
 
-            printf("The determinant of the matrix is: %f\n", determinantMatrix(matrix1));
+            printf("The determinant of the matrix is: %lf\n", determinantMatrix(matrix1));
 
             deleteMatrix(matrix1);
             printf("\n\n\n");
@@ -596,7 +596,7 @@ void manageChoice(int *choice) {
         case 26:
             printf("You chose to compute the scalar product\n\n"
                    "Insert the K value: ");
-            returnScanf = scanf("%f", &k);
+            returnScanf = scanf("%lf", &k);
             assert(returnScanf > 0);
 
             printf("Insert the matrix: \n");
@@ -609,7 +609,7 @@ void manageChoice(int *choice) {
             scalarProductMatrix(k, matrix1, res);
             scalarProductMatrix(k, matrix1, res);
 
-            printf("%f\n"
+            printf("%lf\n"
                    "*\n", k);
             printMatrix(matrix1);
             printf("=\n");
@@ -785,7 +785,7 @@ void manageChoice(int *choice) {
             k = findMaxMatrix(matrix1, &row2, &column2);
             printf("Matrix:\n");
             printMatrix(matrix1);
-            printf("The maximum value in the matrix is %f in position(%d; %d)\n", k, row2, column2);
+            printf("The maximum value in the matrix is %lf in position(%d; %d)\n", k, row2, column2);
 
             deleteMatrix(matrix1);
             printf("\n\n\n");
@@ -800,7 +800,7 @@ void manageChoice(int *choice) {
 
             printf("Matrix:\n");
             printMatrix(matrix1);
-            printf("The minimum value in the matrix is %f in position(%d; %d)\n", k, row2, column2);
+            printf("The minimum value in the matrix is %lf in position(%d; %d)\n", k, row2, column2);
 
             deleteMatrix(matrix1);
             printf("\n\n\n");
@@ -818,7 +818,7 @@ void manageChoice(int *choice) {
             printMatrix(matrix1);
             printf("The elements in the matrix diagonal are as follows:\n");
             for (int i = 0; i < row2; ++i) {
-                printf("%f ", array[i]);
+                printf("%lf ", array[i]);
             }
             printf("\n");
 
@@ -839,7 +839,7 @@ void manageChoice(int *choice) {
             printMatrix(matrix1);
             printf("The pivots of the matrix are as follows:\n");
             for (int i = 0; i < row2; ++i) {
-                printf("%f ", array[i]);
+                printf("%lf ", array[i]);
             }
             printf("\n");
 
