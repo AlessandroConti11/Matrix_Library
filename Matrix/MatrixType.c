@@ -206,7 +206,7 @@ int isInvertibleMatrix(matrix *a) {
     assert(a->n > 0);
     assert(a->m == a->n);
 
-    //matrix is NOT invertible if the determinanti is equalt to 0
+    //matrix is NOT invertible if the determinant is equal to 0
     if (determinantMatrix(a) == 0) {
         //matrix is NOT invertible
         return 0;

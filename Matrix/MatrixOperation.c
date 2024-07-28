@@ -232,7 +232,7 @@ void subMatrix(matrix *a, matrix *b, matrix *res) {
 }
 
 /**
- * Computes the scalar product of the matrix.
+ * Computes the scalar product of a matrix.
  *
  * @param scalar the scalar number.
  * @param a the matrix - M: n x m.
