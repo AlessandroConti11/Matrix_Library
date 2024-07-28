@@ -6,7 +6,7 @@ Author: Alessandro Conti - [AlessandroConti11](https://github.com/AlessandroCont
 License: [MIT license](LICENSE).
 
 
-Tags: `#C`, `#cofactor`, `#determinant`, `#inverse_matrix`, `#matrix_operation`, `#matrix_type`, `#minor`, `#pivot`, `#rank`, `#row_echelon_matrix`, `#transpose_matrix`, `#matrix`.
+Tags: `#C`, `#cofactor`, `#determinant`, `#inverse_matrix`, `#matrix`, `#matrix_operation`, `#matrix_type`, `#minor`, `#pivot`, `#rank`, `#row_echelon_matrix`, `#transpose_matrix`.
 
 
 ## Specification
