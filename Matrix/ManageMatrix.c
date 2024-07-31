@@ -118,6 +118,7 @@ void initializeMatrix(matrix *a, ...) {
 
 /**
  * Copies a matrix.
+ * @warning the matrix b must be greater or equal than a
  *
  * @param a the matrix to be copied - M: n x m.
  * @param b the copied matrix - M: p x q with p>=n && q>=m.
