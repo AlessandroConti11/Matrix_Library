@@ -32,10 +32,10 @@ The project aims to create a library that contains all useful functions for hand
 | check if a matrix is an upper diagonal matrix      | __int isUpperDiagonalMatrix(matrix *a);__                               | check whether the matrix has all elements below the main diagonal equal to 0                                                                      |
 | check if a matrix is a lower diagonal matrix       | __int isLowerDiagonalMatrix(matrix *a);__                               | check whether the matrix has all elements above the main diagonal equal to 0                                                                      |
 | check if a matrix is a symmetric matrix            | __int isSymmetricMatrix(matrix *a);__                                   | check whether the matrix has all the element (i, j) equal to the element (j, i)                                                                   |
-| check if a matrix is an anti-symmertic matrix      | __int isAntisymmetricMatrix(matrix *a);__                               | check whether the matrix has the elements (i, j) opposite to those (j, i)                                                                         |
+| check if a matrix is an anti-symmetric matrix      | __int isAntisymmetricMatrix(matrix *a);__                               | check whether the matrix has the elements (i, j) opposite to those (j, i)                                                                         |
 | check if a matrix is invertible                    | __int isInvertibleMatrix(matrix *a);__                                  | check whether the determinant is different from 0                                                                                                 |
 | check if a matrix is a row-echelon matrix          | __int isRowEchelonMatrix(matrix *a);__                                  | check whether the first nonzero element of each row is further to the right than the first nonzero element of the previous row.                   |
-| check if a matrix is an Hakel matrix               | __int isHankelMatrix(matrix *a);__                                      | check whether the matrix has all the element (i, j) equal to the element (i-1, j+1)                                                               |
+| check if a matrix is an Hankel matrix              | __int isHankelMatrix(matrix *a);__                                      | check whether the matrix has all the element (i, j) equal to the element (i-1, j+1)                                                               |
 | check if a matrix is a Toeplitz matrix             | __int isToeplitzMatrix(matrix *a);__                                    | check whether the matrix has all the element (i, j) equal to the element (i-1, j-1)                                                               |
 | transpose a matrix                                 | __void transposingMatrix(matrix *a, matrix *trans);__                   | the transposed matrix is given by the elements (j, i)                                                                                             |
 | invert a matrix                                    | __void inverseMatrix(matrix *a, matrix *inv);__                         | inverse the matrix using the method of cofactors                                                                                                  |
@@ -48,7 +48,7 @@ The project aims to create a library that contains all useful functions for hand
 | compute the sum between two matrices               | __void sumMatrix(matrix *a, matrix *b, matrix *res);__                  | compute the sum between two given matrices                                                                                                        |
 | compute the difference between two matrices        | __void subMatrix(matrix *a, matrix *b, matrix *res);__                  | compute the difference between two given matrices                                                                                                 |
 | compute the scalar product of a matrix             | __void scalarProductMatrix(double scalar, matrix *a, matrix *res);__    | compute the scalar product of the matrix                                                                                                          |
-| compute the product between two matriced           | __void productMatrix(matrix *a, matrix *b, matrix *res);__              | compute the product between two given matrices                                                                                                    |
+| compute the product between two matrices           | __void productMatrix(matrix *a, matrix *b, matrix *res);__              | compute the product between two given matrices                                                                                                    |
 | compute the power elevation of a matrix            | __void powerMatrix(matrix *a, int k, matrix *res);__                    | compute the power elevation of the matrix                                                                                                         |
 | compute the direct sum between two matrices        | __void directSumMatrix(matrix *a, matrix *b, matrix *res);__            | compute the direct sum between two matrices, the first matrix is placed in the upper-left corner and the second matrix in the bottom-right corner |
 | compute the Kronecker product between two matrices | __void kroneckerProductMatrix(matrix *a, matrix *b, matrix *res);__     | compute the Kronecker product between two matrices                                                                                                |
@@ -92,7 +92,7 @@ The Makefile in the repository can also be used to compile the code.
    ```bash
    make asan
    ```
-- if you want delete some file - default is the output file
+- if you want to delete some file - default is the executable file
    ```bash
    make clean
    ```
