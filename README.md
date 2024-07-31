@@ -101,7 +101,7 @@ The Makefile in the repository can also be used to compile the code.
 ## Contribute
 
 - If you find a security vulnerability, do NOT open an issue. Email [Alessandro Conti](mailto:ale.conti.1101@gmail.com) instead.
-- If you find a bug or error or want to add some other function that is not yet implemented
+- If you find a bug or error or want to add some other function that is not implemented yet
   1. **FORK** the repo
   2. **CLONE** the project to your own machine
   3. **COMMIT** to your own branch
