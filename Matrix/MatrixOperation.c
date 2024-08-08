@@ -311,8 +311,7 @@ void powerMatrix(matrix *a, int k, matrix *res) {
     assert(tmp->m == a->m);
 
     //initialize the res matrix
-    deleteMatrix(res);
-    res = createIdentityMatrix(a->n);
+    copyMatrix(createIdentityMatrix(a->n), res);
     assert(res->n == a->n);
     assert(res->m == a->m);
 
