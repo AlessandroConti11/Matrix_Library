@@ -607,7 +607,6 @@ void manageChoice(int *choice) {
             assert(res != NULL);
 
             scalarProductMatrix(k, matrix1, res);
-            scalarProductMatrix(k, matrix1, res);
 
             printf("%lf\n"
                    "*\n", k);
