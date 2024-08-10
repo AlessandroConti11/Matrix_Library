@@ -815,7 +815,7 @@ void manageChoice(int *choice) {
 
             printf("Matrix:\n");
             printMatrix(matrix1);
-            printf("The elements in the matrix diagonal are as follows:\n");
+            printf("The elements in the matrix diagonal are as follows: ");
             for (int i = 0; i < row2; ++i) {
                 printf("%lf ", array[i]);
             }
@@ -826,7 +826,7 @@ void manageChoice(int *choice) {
             printf("\n\n\n");
             break;
         case 36:
-            printf("You chose to find the pivot of a matrix\n\n"
+            printf("You chose to find the pivots of a matrix\n\n"
                     "Insert the matrix: \n");
             matrix1 = generateMatrixNxM(&row1, &column1);
             assert(matrix1 != NULL);
@@ -836,7 +836,7 @@ void manageChoice(int *choice) {
 
             printf("Matrix:\n");
             printMatrix(matrix1);
-            printf("The pivots of the matrix are as follows:\n");
+            printf("The pivots of the matrix are as follows: ");
             for (int i = 0; i < row2; ++i) {
                 printf("%lf ", array[i]);
             }
@@ -908,7 +908,7 @@ int main(void) {
         //manage the choice
         manageChoice(&choice);
 
-        sleep(5);
+//        sleep(5);
 
     } while (choice != 39);
 

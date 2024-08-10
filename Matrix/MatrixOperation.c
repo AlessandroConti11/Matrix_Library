@@ -281,6 +281,7 @@ void productMatrix(matrix *a, matrix *b, matrix *res) {
     for (int i = 0; i < a->n; ++i) {
         for (int j = 0; j < b->m; ++j) {
             res->matrix[i][j] = 0;
+            tmp = 0;
             for (int k = 0; k < a->m; ++k) {
                 tmp += a->matrix[i][k] * b->matrix[k][j];
             }

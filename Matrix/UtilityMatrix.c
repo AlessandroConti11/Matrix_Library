@@ -203,10 +203,8 @@ void luDecomposition(matrix *a, matrix *l, matrix *u) {
     double sum = 0;
 
     //initialize L and U matrix
-    deleteMatrix(l);
-    l = createNullMatrix(a->n, a->m);
-    deleteMatrix(u);
-    u = createNullMatrix(a->n, a->m);
+    copyMatrix(createNullMatrix(a->n, a->m), l);
+    copyMatrix(createNullMatrix(a->n, a->m), u);
 
     for (int i = 0; i < a->n; ++i) {
         //compute U matrix
