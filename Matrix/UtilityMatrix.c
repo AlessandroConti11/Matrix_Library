@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "../Matrix.h"
@@ -10,7 +11,7 @@
  * @param a the matrix - M: n x m.
  * @param row1 the first row to be swapped.
  * @param row2 the second row to be swapped.
- * @param swap the swapped matrix.
+ * @param swap the swapped matrix - M: n x m.
  */
 void swapRowMatrix(matrix *a, int row1, int row2, matrix *swap) {
     assert(a->n > 0);
@@ -42,7 +43,7 @@ void swapRowMatrix(matrix *a, int row1, int row2, matrix *swap) {
  * @param a the matrix - M: n x m.
  * @param col1 the first column to be swapped.
  * @param col2 the second column to be swapped.
- * @param swap the swapped matrix.
+ * @param swap the swapped matrix - M: n x m.
  */
 void swapColumnMatrix(matrix *a, int col1, int col2, matrix *swap) {
     assert(a->n > 0);
